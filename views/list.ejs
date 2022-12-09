@@ -3,24 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>To do list</title>
+    <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
+    <div class="box" id="heading">
+        <h1><%= kindOfDay %></h1>
+    </div>
 
-    <h1 style="color:purple">It's a <%= kindOfDay %></h1>
+    <div class="box">
+        <% newListIteam.forEach(myFunc);
+        function myFunc(item){ %>
+          <div class="item">
+            <input type="checkbox">
+            <p><%= item %></p>
+          </div>
+      <%  } %>
 
-    <ul>
-      <% newListIteam.forEach(myFunc);
-      function myFunc(item){ %>
-        <li><%= item %></li>
-    <%  } %>
+      <form class="item" action="/" method="post">
+        <input placeholder="New Item" type="text" name="task" autocomplete="off">
+        <button name="button" type="submit">+</button>
+      </form>
+    </div>
 
-    </ul>
 
-    <form action="/" method="post">
-      <label for="task">Enter list item</label>
-      <input id="task" type="text" name="task">
-      <button type="submit">Add</button>
-    </form>
 
 
   </body>

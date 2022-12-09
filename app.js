@@ -5,26 +5,27 @@ const bodyParser = require("body-parser");
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static("public"));
 
-var items = ["Eat", "Sleep", "Run"];
+let items = ["Eat", "Sleep", "Run"];
 
 app.get("/", function(req, res){
   //res.sendFile(__dirname + "/index.html");
   //res.send("hello word");
-  var today = new Date();
-  var options = {
+  let today = new Date();
+  let options = {
     weekday: "long",
     day: "numeric",
     month:"long"
   };
 
-  var day = today.toLocaleDateString("en-US", options);
+  let day = today.toLocaleDateString("en-US", options);
   res.render("list", {kindOfDay: day, newListIteam: items});
 
 });
 
 app.post("/", function(req, res){
-  var item = req.body.task;
+  let item = req.body.task;
   items.push(item);
   res.redirect("/");
 });
